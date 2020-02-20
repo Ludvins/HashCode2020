@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+#include <set>
 
 struct library_t {
   unsigned long long id;
@@ -88,13 +89,51 @@ int main() {
   // Build output
   std::vector<output_v> output;
 
-  for (auto l : libraries) {
-    output_v o;
-    o.id = l.id;
-    o.n_books = l.n_books;
-    o.b_ids = l.books;
+  // Books printed
+  std::set<int> books_printed;
+  int days = n_days;
 
-    output.push_back(o);
+  while (days > 0 and !libraries.empty()){
+    for (auto& lib : libraries) {
+        int max_books= (days - lib.signup_time) * lib.ships_per_day;
+        lib.score = 0;
+        for (int i = 0; i < max_books and i < lib.n_books; ++i) {
+            lib.score += book_value[lib.books[i]];
+        }
+    }
+
+    // Order libraries
+    std::sort(libraries.begin(), libraries.end(), compare_lib);
+
+    // Choose best libraries
+    library_t l = libraries[0];
+
+    // Output var
+    output_v o;
+    int max_books = (days - l.signup_time) * l.ships_per_day;
+    // Books printed by this library
+    int j = 0;
+
+    // Checks if books are already printed
+    for (int i = 0; i < l.n_books and j < max_books; i++) {
+        if (!books_printed.count(l.books[i])){
+            o.b_ids.push_back(l.books[i]);
+            books_printed.insert(l.books[i]);
+            ++j;
+        }
+    }
+
+    if (j > 0){
+      // Construct
+      o.id = l.id;
+      o.n_books = j;
+
+      output.push_back(o);
+
+      days -= l.signup_time;
+    }
+
+    libraries.erase(libraries.begin());
   }
 
   write_output(output);
