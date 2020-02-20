@@ -85,7 +85,7 @@ int main() {
     std::sort(libraries.begin(), libraries.end(), compare_lib);
 
     // Build output
-    std::vector<output_v> output(n_libraries);
+    std::vector<output_v> output;
 
     for (auto l : libraries) {
         output_v o;
