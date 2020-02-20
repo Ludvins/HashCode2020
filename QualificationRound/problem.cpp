@@ -97,7 +97,7 @@ int main() {
     for (auto& lib : libraries) {
         int max_books= (days - lib.signup_time) * lib.ships_per_day;
         lib.score = 0;
-        for (int i = 0; i < max_books; ++i) {
+        for (int i = 0; i < max_books and i < lib.n_books; ++i) {
             lib.score += book_value[lib.books[i]];
         }
     }
