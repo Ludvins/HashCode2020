@@ -9,14 +9,21 @@ struct library_t {
   std::vector<int> books;
 };
 
+unsigned long long n_books;
+unsigned long long n_libraries;
+unsigned long long n_days;
+std::vector<int> book_value;
+std::vector<library_t> libraries;
+
+bool compare(int a, int b) {
+  if (book_value[a] > book_value[b])
+    return a;
+  return b;
+}
+
 int main() {
 
   // Input data
-  unsigned long long n_books;
-  unsigned long long n_libraries;
-  unsigned long long n_days;
-  std::vector<int> book_value;
-  std::vector<library_t> libraries;
 
   // Read input
   std::cin >> n_books;
