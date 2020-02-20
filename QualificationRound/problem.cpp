@@ -9,6 +9,12 @@ struct library_t {
   std::vector<int> books;
 };
 
+struct output_v {
+  unsigned long long id;
+  unsigned long long books;
+  std::vector<int> b_ids;
+};
+
 unsigned long long n_books;
 unsigned long long n_libraries;
 unsigned long long n_days;
@@ -26,6 +32,17 @@ bool compare(unsigned long long a, unsigned long long b) {
 int library_cost(library_t* l) {
     return (n_days - l->singup_time) * l->ships_per_day *
         (book_value[l->books[0]] + book_value[l->books.back()] ) ;
+}
+
+void write_output(unsigned long long l, std::vector<output_v> v) {
+  std::cout << l << std::endl;
+  for (unsigned long long i = 0; i < l; i++) {
+    std::cout << v[i].id << " " << v[i].books << std::endl;
+    for (unsigned long long j = 0; j < v[i].b_ids.size() - 1; j++) {
+      std::cout << v[i].b_ids[j] << " ";
+    }
+    std::cout << v[i].b_ids[v.size() - 1] << std::endl;
+  }
 }
 
 int main() {
