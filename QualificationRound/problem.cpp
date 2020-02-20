@@ -1,12 +1,14 @@
+
 #include <algorithm>
 #include <iostream>
 #include <vector>
 
 struct library_t {
-    unsigned long long n_books;
-    unsigned long long signup_time;
-    unsigned long long ships_per_day;
-    std::vector<int> books;
+  unsigned long long n_books;
+  unsigned long long signup_time;
+  unsigned long long ships_per_day;
+  unsigned long long score;
+  std::vector<int> books;
 };
 
 struct output_v {
@@ -29,14 +31,12 @@ bool compare(unsigned long long a, unsigned long long b) {
     return false;
 }
 
-int library_score(library_t& l) {
-    return (n_days - l.signup_time) * l.ships_per_day *
-        (book_value[l.books[0]] + book_value[l.books.back()] ) ;
+unsigned long long library_score(unsigned long long a, unsigned long long b,
+                                 unsigned long long c, int d, int e) {
+  return (a - b) * c * (d + e);
 }
 
-bool compare_lib(library_t& l1, library_t& l2){
-    return library_score(l1) > library_score(l2);
-}
+bool compare_lib(library_t &l1, library_t &l2) { return l1.score > l2.score; }
 
 void write_output(std::vector<output_v> &v) {
     std::cout << v.size() << std::endl;
@@ -76,7 +76,10 @@ int main() {
         }
 
         std::sort(aux5.begin(), aux5.end(), compare);
-        libraries.push_back({aux, aux2, aux3, aux5});
+        libraries.push_back({aux, aux2, aux3,
+                         library_score(n_days, aux2, aux3, book_value[aux5[0]],
+                                       book_value[aux5.back()]),
+                         aux5});
     }
 
     // Order libraries
@@ -95,4 +98,5 @@ int main() {
     }
 
     write_output(output);
+
 }
