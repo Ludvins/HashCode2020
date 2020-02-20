@@ -60,6 +60,7 @@ int main() {
   std::cin >> n_days;
 
   unsigned long long aux, aux2, aux3, aux4;
+  std::vector<int> count(n_books, 0);
 
   for (unsigned long long i = 0; i < n_books; i++) {
     std::cin >> aux;
@@ -73,6 +74,7 @@ int main() {
     std::vector<int> aux5;
     for (unsigned long long j = 0; j < aux; j++) {
       std::cin >> aux4;
+      count[aux4]++;
       aux5.push_back(aux4);
     }
 
@@ -81,6 +83,10 @@ int main() {
                          library_score(n_days, aux2, aux3, book_value[aux5[0]],
                                        book_value[aux5.back()]),
                          aux5});
+  }
+
+  for (unsigned long long i = 0; i < n_books; i++) {
+    book_value[i] /= count[i];
   }
 
   // Order libraries
