@@ -133,5 +133,4 @@ int main() {
   }
 
   write_output(output);
-  std::cout << "Acaba archivo \n";
 }
