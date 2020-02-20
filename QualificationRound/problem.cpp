@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -17,10 +18,10 @@ std::vector<library_t> libraries;
 
 bool compare(unsigned long long a, unsigned long long b) {
   if (book_value[a] > book_value[b])
-    return a;
+    return true;
   if (book_value[a] == book_value[b] and a > b)
-    return a;
-  return b;
+    return true;
+  return false;
 }
 
 int main() {
@@ -50,6 +51,7 @@ int main() {
       std::cin >> aux4;
       aux5.push_back(aux4);
     }
+    std::sort(aux5.begin(), aux5.end(), compare);
     libraries.push_back({aux, aux2, aux3, aux5});
   }
 }
