@@ -4,6 +4,7 @@
 #include <vector>
 
 struct library_t {
+  unsigned long long id;
   unsigned long long n_books;
   unsigned long long signup_time;
   unsigned long long ships_per_day;
@@ -13,7 +14,7 @@ struct library_t {
 
 struct output_v {
   unsigned long long id;
-  unsigned long long books;
+  unsigned long long n_books;
   std::vector<int> b_ids;
 };
 
@@ -41,7 +42,7 @@ bool compare_lib(library_t &l1, library_t &l2) { return l1.score > l2.score; }
 void write_output(std::vector<output_v> &v) {
   std::cout << v.size() << std::endl;
   for (auto l : v) {
-    std::cout << l.id << " " << l.books << std::endl;
+    std::cout << l.id << " " << l.n_books << std::endl;
     for (auto j : l.b_ids) {
       std::cout << j << " ";
     }
@@ -58,7 +59,7 @@ int main() {
   std::cin >> n_libraries;
   std::cin >> n_days;
 
-  unsigned long long aux, aux2, aux3, aux4;
+  unsigned long long aux, signup, ships, aux4;
 
   for (unsigned long long i = 0; i < n_books; i++) {
     std::cin >> aux;
@@ -67,8 +68,8 @@ int main() {
 
   for (unsigned long long i = 0; i < n_libraries; i++) {
     std::cin >> aux;
-    std::cin >> aux2;
-    std::cin >> aux3;
+    std::cin >> signup;
+    std::cin >> ships;
     std::vector<int> aux5;
     for (unsigned long long j = 0; j < aux; j++) {
       std::cin >> aux4;
@@ -76,9 +77,10 @@ int main() {
     }
 
     std::sort(aux5.begin(), aux5.end(), compare);
-    libraries.push_back({aux, aux2, aux3,
-                         library_score(n_days, aux2, aux3, book_value[aux5[0]],
-                                       book_value[aux5.back()]),
-                         aux5});
+    libraries.push_back(
+        {i, aux, signup, ships,
+         library_score(n_days, signup, ships, book_value[aux5[0]],
+                       book_value[aux5.back()]),
+         aux5});
   }
 }
