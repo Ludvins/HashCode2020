@@ -93,7 +93,17 @@ int main() {
   std::set<int> books_printed;
   int days = n_days;
 
-  for (auto l : libraries) {
+  while (days > 0){
+    // Order libraries
+    std::sort(libraries.begin(), libraries.end(), compare_lib);
+
+    for (auto& lib : libraries) {
+        lib.score = library_score(days, lib.signup_time, lib.ships_per_day, book_value[lib.books.front()], book_value[lib.books.back()]);
+    }
+
+    // Choose best libraries
+    library_t l = libraries[0];
+
     // Output var
     output_v o;
     int max_books = (days - l.signup_time) * l.ships_per_day;
@@ -117,8 +127,9 @@ int main() {
       output.push_back(o);
 
       days -= l.signup_time;
-      if (days <= 0) break;
     }
+
+    libraries.erase(libraries.begin());
   }
 
   write_output(output);
