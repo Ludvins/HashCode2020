@@ -15,8 +15,10 @@ unsigned long long n_days;
 std::vector<int> book_value;
 std::vector<library_t> libraries;
 
-bool compare(int a, int b) {
+bool compare(unsigned long long a, unsigned long long b) {
   if (book_value[a] > book_value[b])
+    return a;
+  if (book_value[a] == book_value[b] and a > b)
     return a;
   return b;
 }
