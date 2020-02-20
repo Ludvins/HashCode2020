@@ -34,7 +34,7 @@ int library_cost(library_t *l) {
          (book_value[l->books[0]] + book_value[l->books.back()]);
 }
 
-void write_output(std::vector<output_v> v) {
+void write_output(std::vector<output_v> &v) {
   std::cout << v.size() << std::endl;
   for (auto l : v) {
     std::cout << l.id << " " << l.books << std::endl;
