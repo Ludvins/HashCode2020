@@ -95,7 +95,11 @@ int main() {
 
   while (days > 0 and !libraries.empty()){
     for (auto& lib : libraries) {
-        lib.score = library_score(days, lib.signup_time, lib.ships_per_day, book_value[lib.books.front()], book_value[lib.books.back()]);
+        int max_books= (days - lib.signup_time) * lib.ships_per_day;
+        lib.score = 0;
+        for (int i = 0; i < max_books; ++i) {
+            lib.score += book_value[lib.books[i]];
+        }
     }
 
     // Order libraries
