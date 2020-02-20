@@ -29,14 +29,14 @@ bool compare(unsigned long long a, unsigned long long b) {
   return false;
 }
 
-void write_output(unsigned long long l, std::vector<output_v> v) {
-  std::cout << l << std::endl;
-  for (unsigned long long i = 0; i < l; i++) {
-    std::cout << v[i].id << " " << v[i].books << std::endl;
-    for (unsigned long long j = 0; j < v[i].b_ids.size() - 1; j++) {
-      std::cout << v[i].b_ids[j] << " ";
+void write_output(std::vector<output_v> v) {
+  std::cout << v.size() << std::endl;
+  for (auto l : v) {
+    std::cout << l.id << " " << l.books << std::endl;
+    for (auto j : l.b_ids) {
+      std::cout << j << " ";
     }
-    std::cout << v[i].b_ids[v.size() - 1] << std::endl;
+    std::cout << l.b_ids[v.size() - 1] << std::endl;
   }
 }
 
