@@ -32,10 +32,8 @@ int main() {
   std::cin >> n_libraries;
   std::cin >> n_days;
 
-  unsigned long long aux;
-  unsigned long long aux2;
-  unsigned long long aux3;
-  unsigned long long aux4;
+  unsigned long long aux, aux2, aux3, aux4;
+
   for (unsigned long long i = 0; i < n_books; i++) {
     std::cin >> aux;
     book_value.push_back(aux);
