@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+#include <set>
 
 struct library_t {
   unsigned long long id;
@@ -88,11 +89,28 @@ int main() {
   // Build output
   std::vector<output_v> output;
 
+  // Books printed
+  std::set<int> books_printed;
+  int days = n_days;
+
   for (auto l : libraries) {
+    // Output var
     output_v o;
+    int max_books = (days - l.signup_time) * l.ships_per_day;
+    // Books printed by this library
+    int j = 0;
+
+    for (int i = 0; i < l.n_books and j < max_books; i++) {
+        if (!books_printed.count(l.books[i])){
+            o.b_ids.push_back(l.books[i]);
+            books_printed.insert(l.books[i]);
+            ++j;
+        }
+    }
+
+    // Construct
     o.id = l.id;
-    o.n_books = l.n_books;
-    o.b_ids = l.books;
+    o.n_books = j;
 
     output.push_back(o);
   }
