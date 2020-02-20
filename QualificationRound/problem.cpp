@@ -75,9 +75,9 @@ int main() {
         }
 
         std::sort(aux5.begin(), aux5.end(), compare);
-        libraries.push_back({aux, aux2, aux3,
-                             library_score(n_days, aux2, aux3, book_value[aux5[0]],
-                                           book_value[aux5.back()]),
+        libraries.push_back({i, aux, aux2, aux3,
+                library_score(n_days, aux2, aux3, book_value[aux5[0]],
+                        book_value[aux5.back()]),
                 aux5});
     }
 
