@@ -94,7 +94,6 @@ int main() {
   int days = n_days;
 
   while (days > 0 and !libraries.empty()){
-    std::cout << days;
     // Order libraries
     std::sort(libraries.begin(), libraries.end(), compare_lib);
 
