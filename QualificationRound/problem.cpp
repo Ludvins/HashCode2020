@@ -23,6 +23,11 @@ bool compare(unsigned long long a, unsigned long long b) {
   return false;
 }
 
+int library_cost(library_t* l) {
+    return (n_days - l->singup_time) * l->ships_per_day *
+        (book_value[l->books[0]] + book_value[l->books.back()] ) ;
+}
+
 int main() {
 
   // Input data
@@ -51,4 +56,5 @@ int main() {
     std::sort(aux5.begin(), aux5.end(), compare);
     libraries.push_back({aux, aux2, aux3, aux5});
   }
+
 }
