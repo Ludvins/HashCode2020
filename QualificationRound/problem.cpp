@@ -94,12 +94,12 @@ int main() {
   int days = n_days;
 
   while (days > 0 and !libraries.empty()){
-    // Order libraries
-    std::sort(libraries.begin(), libraries.end(), compare_lib);
-
     for (auto& lib : libraries) {
         lib.score = library_score(days, lib.signup_time, lib.ships_per_day, book_value[lib.books.front()], book_value[lib.books.back()]);
     }
+
+    // Order libraries
+    std::sort(libraries.begin(), libraries.end(), compare_lib);
 
     // Choose best libraries
     library_t l = libraries[0];
