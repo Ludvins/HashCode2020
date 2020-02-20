@@ -29,9 +29,13 @@ bool compare(unsigned long long a, unsigned long long b) {
     return false;
 }
 
-int library_cost(library_t* l) {
-    return (n_days - l->singup_time) * l->ships_per_day *
-        (book_value[l->books[0]] + book_value[l->books.back()] ) ;
+int library_score(library_t& l) {
+    return (n_days - l.singup_time) * l.ships_per_day *
+        (book_value[l.books[0]] + book_value[l.books.back()] ) ;
+}
+
+bool compare_lib(library_t& l1, library_t& l2){
+    return library_score(l1) > library_score(l2);
 }
 
 void write_output(unsigned long long l, std::vector<output_v> v) {
@@ -73,4 +77,7 @@ int main() {
         std::sort(aux5.begin(), aux5.end(), compare);
         libraries.push_back({aux, aux2, aux3, aux5});
     }
+
+    // Order libraries
+    std::sort(libraries.begin(), libraries.end(), )
 }
