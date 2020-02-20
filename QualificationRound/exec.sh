@@ -1,4 +1,5 @@
 #!/bin/bash
+g++ problem.cpp
 
 ./a.out < inputs/a_example.txt > outputs/a_example.txt
 ./a.out < inputs/b_read_on.txt > outputs/b_read_on.txt
