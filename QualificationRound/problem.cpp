@@ -109,14 +109,16 @@ int main() {
         }
     }
 
-    // Construct
-    o.id = l.id;
-    o.n_books = j;
+    if (j > 0){
+      // Construct
+      o.id = l.id;
+      o.n_books = j;
 
-    output.push_back(o);
+      output.push_back(o);
 
-    days -= l.signup_time;
-    if (days <= 0) break;
+      days -= l.signup_time;
+      if (days <= 0) break;
+    }
   }
 
   write_output(output);
