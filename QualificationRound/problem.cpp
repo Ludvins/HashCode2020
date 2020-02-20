@@ -100,6 +100,7 @@ int main() {
     // Books printed by this library
     int j = 0;
 
+    // Checks if books are already printed
     for (int i = 0; i < l.n_books and j < max_books; i++) {
         if (!books_printed.count(l.books[i])){
             o.b_ids.push_back(l.books[i]);
@@ -113,6 +114,9 @@ int main() {
     o.n_books = j;
 
     output.push_back(o);
+
+    days -= l.signup_time;
+    if (days <= 0) break;
   }
 
   write_output(output);
