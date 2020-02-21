@@ -86,7 +86,8 @@ int main() {
   }
 
   for (unsigned long long i = 0; i < n_books; i++) {
-    book_value[i] /= count[i];
+    if (count[i] != 0) book_value[i] /= count[i];
+    else book_value[i] = 0;
   }
 
   // Order libraries
